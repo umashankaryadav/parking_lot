@@ -19,15 +19,14 @@ public class ParkingLotMain {
 
     Processor processor = new CommandProcessor();
     BufferedReader bufferReader = null;
-    System.out.println(args);
     try {
       String command = null;
       switch (args.length) {
         case Constants.ARGS_LENGTH_FOR_FILE_INPUT :
           File inputFile = new File(args[0]);
           bufferReader = new BufferedReader(new FileReader(inputFile));
-          command = bufferReader.readLine();
-          while (command != null) {
+          //command = bufferReader.readLine();
+          while ((command = bufferReader.readLine()) != null) {
             command = command.trim();
             if (processor.validate(command)) {
               processor.execute(command);
@@ -39,9 +38,9 @@ public class ParkingLotMain {
         case Constants.ARGS_LENGTH_FOR_INTERACTIVE :
           while (true)
           {
+            System.out.print("$ ");
             bufferReader = new BufferedReader(new InputStreamReader(System.in));
             command = bufferReader.readLine().trim();
-            System.out.println(command);
             if (processor.validate(command)) {
               processor.execute(command);
             } else {
@@ -52,7 +51,7 @@ public class ParkingLotMain {
           throw new CustomException(Constants.INVALID_RUN_COMMAND_ARGS);
       }
     } catch (Exception ex) {
-      System.out.println(Constants.INVALID_RUN_COMMAND_ARGS);
+      //System.out.println(Constants.INVALID_RUN_COMMAND_ARGS);
     }
   }
 }

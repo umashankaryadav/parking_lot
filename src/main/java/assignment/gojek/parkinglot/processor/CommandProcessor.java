@@ -28,7 +28,6 @@ public class CommandProcessor implements Processor {
         try
         {
           int numberOfSlots = Integer.parseInt(inputs[1]);
-          System.out.println("Creating "+numberOfSlots);
           parkingLotService.createParkingLot(numberOfSlots);
         } catch (NumberFormatException ex) {
           throw new CustomException(Constants.INVALID_SLOT_ARGUMENT + inputs[1]);

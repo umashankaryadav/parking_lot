@@ -18,11 +18,9 @@ public class ParkingLotServiceImpl implements ParkingLotService {
 
   @Override
   public void createParkingLot(int numberOfSlots) {
-    System.out.println(dataManager);
     if (dataManager != null)
       throw new CustomException(Constants.PARKING_LOT_ALREADY_EXIST);
 
-    System.out.println("numberOfSlots "+numberOfSlots);
     this.dataManager = InMemoryParkingDataManager.createParkingLot(numberOfSlots, new ParkingStrategyManagerImpl());
     System.out.println("Created parking lot with " + numberOfSlots + " slots");
   }
@@ -52,7 +50,7 @@ public class ParkingLotServiceImpl implements ParkingLotService {
   @Override
   public void getStatus(int level) {
     checkIfParkingLotExist();
-    System.out.println("Slot No.\tRegistration No\tColor");
+    System.out.println("Slot No.\tRegistration No\t\tColor");
     List<String> statusList = dataManager.getStatus();
     if (statusList.size() == 0)
       System.out.println("Sorry, parking lot is empty.");
