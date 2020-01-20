@@ -11,4 +11,5 @@ public interface Constants {
   String INVALID_COLOUR_ARGUMENT = "Invalid colour argument ";
 
   String PARKING_LOT_ALREADY_EXIST = "Parking lot already exist, no need to create";
+  String PARKING_LOT_DOESNOT_EXIST = "Parking lot does not exist";
 }

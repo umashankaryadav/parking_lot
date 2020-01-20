@@ -19,34 +19,40 @@ public class ParkingLotMain {
 
     Processor processor = new CommandProcessor();
     BufferedReader bufferReader = null;
-
+    System.out.println(args);
     try {
-      if (args.length == Constants.ARGS_LENGTH_FOR_FILE_INPUT) {
-        File inputFile = new File(args[0]);
-        bufferReader = new BufferedReader(new FileReader(inputFile));
-        String command = bufferReader.readLine();
-        while (command != null) {
-          command = command.trim();
-          if (processor.validate(command)) {
-            processor.execute(command);
-          } else {
-            throw new CustomException(Constants.INVALID_COMMAND + command);
+      String command = null;
+      switch (args.length) {
+        case Constants.ARGS_LENGTH_FOR_FILE_INPUT :
+          File inputFile = new File(args[0]);
+          bufferReader = new BufferedReader(new FileReader(inputFile));
+          command = bufferReader.readLine();
+          while (command != null) {
+            command = command.trim();
+            if (processor.validate(command)) {
+              processor.execute(command);
+            } else {
+              throw new CustomException(Constants.INVALID_COMMAND + command);
+            }
           }
-        }
-      } else if (args.length == Constants.ARGS_LENGTH_FOR_INTERACTIVE) {
-        bufferReader = new BufferedReader(new InputStreamReader(System.in));
-        String command = bufferReader.readLine().trim();
-        System.out.println(command);
-        if (processor.validate(command)) {
-          processor.execute(command);
-        } else {
-          throw new CustomException(Constants.INVALID_COMMAND + command);
-        }
-      } else {
-        throw new CustomException(Constants.INVALID_RUN_COMMAND_ARGS);
+          break;
+        case Constants.ARGS_LENGTH_FOR_INTERACTIVE :
+          while (true)
+          {
+            bufferReader = new BufferedReader(new InputStreamReader(System.in));
+            command = bufferReader.readLine().trim();
+            System.out.println(command);
+            if (processor.validate(command)) {
+              processor.execute(command);
+            } else {
+              throw new CustomException(Constants.INVALID_COMMAND + command);
+            }
+          }
+        default:
+          throw new CustomException(Constants.INVALID_RUN_COMMAND_ARGS);
       }
     } catch (Exception ex) {
-      System.out.println(ex.getMessage());
+      System.out.println(Constants.INVALID_RUN_COMMAND_ARGS);
     }
   }
 }

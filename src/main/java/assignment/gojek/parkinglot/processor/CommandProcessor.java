@@ -68,7 +68,7 @@ public class CommandProcessor implements Processor {
         parkingLotService.getSlotNoFromRegNo(level, inputs[1]);
         break;
       case EXIT:
-        return;
+        System.exit(0);
       default:
         System.out.println(Constants.INVALID_COMMAND);
         break;
