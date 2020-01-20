@@ -18,7 +18,7 @@ public class CommandProcessor implements Processor {
 
   @Override
   public void execute(String command) throws CustomException {
-    int level = 1;
+    int level = 1; //Assuming single floor parking as per problem statement
     String[] inputs = command.split(" ");
     String baseCommand = inputs[0];
     CommandEnum commandEnum = CommandEnum.getCommandByName(baseCommand);
@@ -28,7 +28,7 @@ public class CommandProcessor implements Processor {
         try
         {
           int numberOfSlots = Integer.parseInt(inputs[1]);
-          parkingLotService.createParkingLot(numberOfSlots);
+          parkingLotService.createParkingLot(level, numberOfSlots);
         } catch (NumberFormatException ex) {
           throw new CustomException(Constants.INVALID_SLOT_ARGUMENT + inputs[1]);
         }

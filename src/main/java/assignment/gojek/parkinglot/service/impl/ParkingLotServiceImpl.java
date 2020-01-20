@@ -17,11 +17,11 @@ public class ParkingLotServiceImpl implements ParkingLotService {
   private ParkingDataManager<Vehicle> dataManager = null;
 
   @Override
-  public void createParkingLot(int numberOfSlots) {
+  public void createParkingLot(int level, int numberOfSlots) {
     if (dataManager != null)
       throw new CustomException(Constants.PARKING_LOT_ALREADY_EXIST);
 
-    this.dataManager = InMemoryParkingDataManager.createParkingLot(numberOfSlots, new ParkingStrategyManagerImpl());
+    this.dataManager = InMemoryParkingDataManager.createParkingLot(level, numberOfSlots, new ParkingStrategyManagerImpl());
     System.out.println("Created parking lot with " + numberOfSlots + " slots");
   }
 

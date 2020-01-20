@@ -13,6 +13,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class InMemoryParkingDataManager<T extends Vehicle> implements ParkingDataManager<T> {
 
+  private AtomicInteger level = new AtomicInteger();
+
   private AtomicInteger noOfParkingSlots = new AtomicInteger();
 
   private AtomicInteger availability = new AtomicInteger();
@@ -21,23 +23,15 @@ public class InMemoryParkingDataManager<T extends Vehicle> implements ParkingDat
 
   private Map<Integer, Optional<T>> slotVehicleMap;
 
-  private List<Integer> availableSlotList;
-
-  private Map<Integer, Optional<T>> slotCarMap;
-
-  private Map<String, Integer> regNoCarSlotMap;
-
-  private Map<String, List<String>> colorCarMap;
-
   private static InMemoryParkingDataManager parkingLotInstance = null;
 
   @SuppressWarnings("unchecked")
-  public static <T extends Vehicle> InMemoryParkingDataManager<T> createParkingLot(
+  public static <T extends Vehicle> InMemoryParkingDataManager<T> createParkingLot(Integer level,
       Integer noOfParkingSlots, ParkingStrategyManager parkingStrategy) {
     if (parkingLotInstance == null) {
       synchronized (InMemoryParkingDataManager.class) {
         if (parkingLotInstance == null) {
-          parkingLotInstance = new InMemoryParkingDataManager<T>(noOfParkingSlots, parkingStrategy);
+          parkingLotInstance = new InMemoryParkingDataManager<T>(level, noOfParkingSlots, parkingStrategy);
         }
       }
     }
@@ -45,8 +39,8 @@ public class InMemoryParkingDataManager<T extends Vehicle> implements ParkingDat
     return parkingLotInstance;
   }
 
-  private InMemoryParkingDataManager(int noOfParkingSlots, ParkingStrategyManager parkingStrategy) {
-
+  private InMemoryParkingDataManager(int level, int noOfParkingSlots, ParkingStrategyManager parkingStrategy) {
+    this.level.set(level);
     this.noOfParkingSlots.set(noOfParkingSlots);
     this.availability.set(noOfParkingSlots);
     this.parkingStrategy = parkingStrategy;

@@ -6,7 +6,7 @@ import java.util.Optional;
 
 public interface ParkingLotService {
 
-  void createParkingLot(int numberOfSlots);
+  void createParkingLot(int level, int numberOfSlots);
 
   Optional<Integer> park(int level, Vehicle vehicle);
 
