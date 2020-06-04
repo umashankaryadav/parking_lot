@@ -20,8 +20,8 @@ mvn clean install
 sh bin/setup.sh
 sh bin/parking_lot.sh file_inputs.txt
 
-Output will be printed in console. 
-
 #### Commands to run application in interactive mode
 sh bin/setup.sh
 sh bin/parking_lot.sh
+
+Output will be printed in console. 
