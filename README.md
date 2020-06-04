@@ -1,5 +1,4 @@
-# parking_lot
-Parking lot
+# Parking lot
 
 Project Requirements
 
