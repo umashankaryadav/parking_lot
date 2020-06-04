@@ -1,20 +1,27 @@
 # Parking lot
 
-Project Requirements
+#### Pre-Requisites
+- Unix System
+- JAVA 8
+- Maven
+- JUnit 4.12
 
-Unix sytem
-JAVA 8
-Maven
-JUnit 4.12
+#### Application Setup
 
-Commands needed for file input run:
+- Clone the git repo and go to `parking_lot` directory.
+
+- Run this:
+
+```
+mvn clean install
+```
+
+#### Commands to run application with input file
 sh bin/setup.sh
 sh bin/parking_lot.sh file_inputs.txt
 
 Output will be printed in console. 
 
-Runn command for Interactive:
+#### Commands to run application in interactive mode
 sh bin/setup.sh
 sh bin/parking_lot.sh
-
-and type command one by one to see output in console.
